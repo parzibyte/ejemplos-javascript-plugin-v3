@@ -91,11 +91,7 @@
 000000000000
 000000000000
 000000000000`;
-        // Esta página es servida desde el propio plugin, así que tomamos el window.document.location.origin para
-        // saber cuál es el host. Esto es debido a que el usuario puede cambiar el puerto del plugin
-        // Si tú vas a usar este ejemplo en otro lugar y conoces la URL del plugin entonces cámbiala. Por defecto
-        // debería ser http://localhost:8000
-        const URLPlugin = window.document.location.origin;
+        const URLPlugin = "http://localhost:8000";
         const $listaDeImpresoras = document.querySelector("#listaDeImpresoras"),
             $btnImprimir = document.querySelector("#btnImprimir");
         const init = async () => {
