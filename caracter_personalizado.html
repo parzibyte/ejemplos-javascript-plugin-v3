@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./bulma.min.css">
+    <script src="./ConectorJavaScript.js" type="text/javascript"></script>
+    <title>Demostrar capacidades del plugin - By Parzibyte</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="columns">
+            <div class="column">
+                <h1 class="is-size-1">Probar carácter personalizado</h1>
+            </div>
+        </div>
+        <div class="columns">
+            <div class="column">
+                <div class="select is-rounded">
+                    <select id="listaDeImpresoras"></select>
+                </div>
+                <button id="btnImprimir" class="button is-success">Imprimir</button>
+            </div>
+            <div class="column">
+                <div class="notification is-warning">
+                    <p>
+                        Al imprimir, el resultado debería ser parecido al siguiente:
+                    </p>
+                </div>
+                <img src="./TicketPusheen.jpg" alt="Resultado de impresión de ticket con plugin versión 3">
+            </div>
+        </div>
+        <div class="columns has-text-centered">
+            <div class="column">
+                <p>
+                    <a href="https://parzibyte.me/blog">Proudly brought to you by Parzibyte</a>
+                </p>
+            </div>
+        </div>
+    </div>
+    <script>
+
+        const obtenerListaDeImpresoras = async () => {
+            return await ConectorPluginV3.obtenerImpresoras();
+        }
+        const caracterPersonalizado = `000001111000
+000010000100
+000100011110
+000100100001
+011100100001
+010100100001
+010100100001
+010100011110
+010100000010
+011100000010
+000100111010
+000100101010
+000111101110
+000000000000
+000000000000
+000000000000
+111010101110
+100010101000
+111010101110
+001010100010
+111011101110
+000000000000
+000000000000
+000000000000`;
+        const URLPlugin = "http://localhost:8000"
+        const $listaDeImpresoras = document.querySelector("#listaDeImpresoras"),
+            $btnImprimir = document.querySelector("#btnImprimir");
+        const init = async () => {
+            const impresoras = await ConectorPluginV3.obtenerImpresoras(URLPlugin);
+            for (const impresora of impresoras) {
+                $listaDeImpresoras.appendChild(Object.assign(document.createElement("option"), {
+                    value: impresora,
+                    text: impresora,
+                }));
+            }
+            $btnImprimir.addEventListener("click", () => {
+                const nombreImpresora = $listaDeImpresoras.value;
+                if (!nombreImpresora) {
+                    return alert("Por favor seleccione una impresora. Si no hay ninguna, asegúrese de haberla compartido como se indica en: https://parzibyte.me/blog/2017/12/11/instalar-impresora-termica-generica/")
+                }
+                demostrarCaracterPersonalizado(nombreImpresora);
+            });
+        }
+        const demostrarCaracterPersonalizado = async (nombreImpresora) => {
+            const conector = new ConectorPluginV3(URLPlugin);
+            conector.Iniciar()
+                //.Feed(1)
+                .DefinirCaracterPersonalizado("$", caracterPersonalizado)
+                .HabilitarCaracteresPersonalizados()
+                .EscribirTexto("$\n")
+            const respuesta = await conector
+                //.Corte(1)
+                //.Pulso(48, 60, 120)
+                .imprimirEn(nombreImpresora);
+            if (respuesta === true) {
+                alert("Impreso correctamente");
+            } else {
+                alert("Error: " + respuesta);
+            }
+        }
+        init();
+    </script>
+</body>
+
+</html>
