@@ -41,8 +41,7 @@
                 <div class="field">
                     <label class="label">Ruta local:</label>
                     <div class="control">
-                        <input id="local" type="text" class="input"
-                            placeholder="C:\Users\parzibyte\Desktop\krool.png">
+                        <input id="local" type="text" class="input" placeholder="C:\Users\parzibyte\Desktop\krool.png">
                     </div>
                 </div>
                 <button id="btnImprimir" class="button is-success mt-2">Imprimir</button>
@@ -53,7 +52,8 @@
                         Al imprimir, el resultado debería ser parecido al siguiente:
                     </p>
                 </div>
-                <img src="./Imprimir imágenes en impresora térmica - de URL, base64 y local.jpg" alt="Ticket con acentos">
+                <img src="./Imprimir imágenes en impresora térmica - de URL, base64 y local.jpg"
+                    alt="Ticket con acentos">
             </div>
         </div>
         <div class="columns has-text-centered">
@@ -71,10 +71,10 @@
         }
         const URLPlugin = "http://localhost:8000"
         const $listaDeImpresoras = document.querySelector("#listaDeImpresoras"),
-            $url = document.querySelector("#url");
-        $base64 = document.querySelector("#base64");
-        $local = document.querySelector("#local");
-        $btnImprimir = document.querySelector("#btnImprimir");
+            $url = document.querySelector("#url"),
+            $base64 = document.querySelector("#base64"),
+            $local = document.querySelector("#local"),
+            $btnImprimir = document.querySelector("#btnImprimir");
 
         const init = async () => {
             const impresoras = await ConectorPluginV3.obtenerImpresoras(URLPlugin);
