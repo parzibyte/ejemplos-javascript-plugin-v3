@@ -33,9 +33,11 @@ const ConectorPluginV3 = (() => {
         static RECUPERACION_QR_MEJOR = 3;
 
 
-        constructor(ruta) {
+        constructor(ruta, serial) {
             if (!ruta) ruta = ConectorPlugin.URL_PLUGIN_POR_DEFECTO;
+            if (!serial) serial = "";
             this.ruta = ruta;
+            this.serial = serial;
             this.operaciones = [];
             return this;
         }
@@ -196,6 +198,7 @@ const ConectorPluginV3 = (() => {
             const payload = {
                 operaciones: this.operaciones,
                 nombreImpresora,
+                serial: this.serial,
             };
             const response = await fetch(this.ruta + "/imprimir", {
                 method: "POST",
