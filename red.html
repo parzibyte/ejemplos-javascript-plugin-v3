@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./bulma.min.css">
+    <script src="./ConectorJavaScript.js" type="text/javascript"></script>
+    <title>Imprimir en red - By Parzibyte</title>
+</head>
+
+<body>
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false"
+                data-target="navbarBasicExample">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
+        </div>
+
+        <div id="navbarBasicExample" class="navbar-menu">
+            <div class="navbar-start">
+                <a class="navbar-item" target="_blank"
+                    href="https://parzibyte.me/blog/2022/09/30/plugin-impresoras-termicas-version-3/">
+                    Documentación y presentación
+                </a>
+
+                <a target="_blank" class="navbar-item"
+                    href="https://github.com/parzibyte/plugin-impresora-termica-v3/releases/latest">
+                    Descargar plugin
+                </a>
+
+                <div class="navbar-item has-dropdown is-hoverable">
+                    <a class="navbar-link">
+                        Ejemplos
+                    </a>
+                    <div class="navbar-dropdown">
+                        <a href="hola.html" class="navbar-item">
+                            Hola mundo
+                        </a>
+                        <a href="capacidades.html" class="navbar-item">
+                            Demostrar capacidades del plugin
+                        </a>
+                        <a href="acentos.html" class="navbar-item">
+                            Acentos y texto en español
+                        </a>
+                        <a href="caracter_personalizado.html" class="navbar-item">
+                            Caracteres personalizados
+                        </a>
+                        <a href="imagenes.html" class="navbar-item">
+                            Imágenes de internet, locales y en base64
+                        </a>
+                        <a href="qr.html" class="navbar-item">
+                            Código QR
+                        </a>
+                        <a href="barcode.html" class="navbar-item">
+                            Códigos de barras
+                        </a>
+                        <a href="licencia.html" class="navbar-item">
+                            Probar licencia
+                        </a>
+                        <a href="red.html" class="navbar-item">
+                            Imprimir en red
+                        </a>
+                    </div>
+                </div>
+                <div class="navbar-item has-dropdown is-hoverable">
+                    <a class="navbar-link">
+                        Conectores
+                    </a>
+                    <div class="navbar-dropdown">
+                        <a href="https://parzibyte.me/blog/2022/09/30/comunicar-javascript-impresora-termica-usando-plugin-v3/"
+                            class="navbar-item">
+                            JavaScript
+                        </a>
+                        <a href="https://parzibyte.me/blog/2022/10/04/imprimir-impresora-termica-java/"
+                            class="navbar-item">
+                            Java
+                        </a>
+                        <a href="https://parzibyte.me/blog/2022/09/30/conectar-impresora-termica-python-imprimir-tickets-usando-plugin-v3/"
+                            class="navbar-item">
+                            Python
+                        </a>
+                        <hr class="navbar-divider">
+                        <a class="navbar-item" href="https://parzibyte.me/#contacto">
+                            Solicitar uno
+                        </a>
+                    </div>
+                </div>
+                <a class="navbar-item" href="errores.html">
+                    Errores comunes
+                </a>
+            </div>
+
+            <div class="navbar-end">
+                <div class="navbar-item">
+                    <div class="buttons">
+                        <a href="https://parzibyte.me/blog/2022/10/02/contratar-licencia-para-plugin-impresora-termica-v3/"
+                            class="button is-primary">
+                            <strong>Contratar una licencia</strong>
+                        </a>
+                        <a class="button is-light"
+                            href="https://parzibyte.me/blog/2022/11/01/plugin-gratuito-impresoras-termicas-bluetooth-android/">
+                            Versión para Android
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="columns">
+            <div class="column">
+                <h1 class="is-size-1">Imprimir en red</h1>
+            </div>
+        </div>
+        <div class="columns">
+            <div class="column">
+                <div class="field">
+                    <label class="label">Escribe la URL remota:</label>
+                    <div class="control">
+                        <input id="url" value="" class="input" type="text" placeholder="http://192.168.0.5:8000">
+                    </div>
+                </div>
+                <div class="field is-grouped">
+                    <div class="field">
+                        <div class="select is-rounded">
+                            <select id="listaDeImpresoras"></select>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <button id="btnObtenerImpresoras" class="button is-success m-2">Obtener lista de
+                            impresoras</button>
+                    </div>
+                </div>
+                <br>
+                <div class="field">
+                    <label class="label">Escribe un mensaje:</label>
+                    <div class="control">
+                        <input id="mensaje" value="Hola mundo desde parzibyte.me" class="input" type="text"
+                            placeholder="Un mensaje de prueba">
+                    </div>
+                </div>
+                <br>
+                <button id="btnImprimir" class="button is-success mt-2">Imprimir</button>
+            </div>
+            <div class="column">
+                <div class="notification is-warning">
+                    <p>
+                        Al imprimir, el resultado debería ser parecido al siguiente:
+                    </p>
+                </div>
+                <img src="./img/Hola mundo.jpg" alt="Ticket con acentos">
+            </div>
+        </div>
+        <div class="columns has-text-centered">
+            <div class="column">
+                <p>
+                    <a href="https://parzibyte.me/blog">Proudly brought to you by Parzibyte</a>
+                </p>
+            </div>
+        </div>
+    </div>
+    <script>
+
+        const URLPlugin = "http://localhost:8000"
+        const $listaDeImpresoras = document.querySelector("#listaDeImpresoras"),
+            $btnImprimir = document.querySelector("#btnImprimir"),
+            $btnObtenerImpresoras = document.querySelector("#btnObtenerImpresoras"),
+            $url = document.querySelector("#url"),
+            $mensaje = document.querySelector("#mensaje");
+
+        const obtenerImpresoras = async () => {
+            const url = $url.value;
+            if (!url) {
+                return alert("Escribe la URL");
+            }
+            for (let i = $listaDeImpresoras.options.length; i >= 0; i--) {
+                $listaDeImpresoras.remove(i);
+            }
+            const impresoras = await ConectorPluginV3.obtenerImpresorasRemotas(URLPlugin, url + "/impresoras");
+            if (Array.isArray(impresoras)) {
+
+                for (const impresora of impresoras) {
+                    $listaDeImpresoras.appendChild(Object.assign(document.createElement("option"), {
+                        value: impresora,
+                        text: impresora,
+                    }));
+                }
+            } else {
+                alert("Error obteniendo impresoras: " + impresoras);
+            }
+        };
+        const init = async () => {
+
+            $btnImprimir.addEventListener("click", () => {
+                const nombreImpresora = $listaDeImpresoras.value;
+                if (!nombreImpresora) {
+                    return alert("Por favor seleccione una impresora. Si no hay ninguna, asegúrese de haberla compartido como se indica en: https://parzibyte.me/blog/2017/12/11/instalar-impresora-termica-generica/")
+                }
+                imprimirHolaMundo(nombreImpresora);
+            });
+            $btnObtenerImpresoras.addEventListener("click", () => {
+                obtenerImpresoras();
+            });
+        }
+
+
+        const imprimirHolaMundo = async (nombreImpresora) => {
+            const mensaje = $mensaje.value;
+            const url = $url.value;
+            if (!mensaje) {
+                return alert("Escribe un mensaje");
+            }
+
+            if (!url) {
+                return alert("Escribe la URL");
+            }
+            const conector = new ConectorPluginV3(URLPlugin);
+            conector.Iniciar();
+            conector.EscribirTexto(mensaje);
+            conector.Feed(1);
+            const respuesta = await conector
+                .imprimirEnImpresoraRemota(nombreImpresora, url + "/imprimir");
+            if (respuesta === true) {
+                alert("Impreso correctamente");
+            } else {
+                alert("Error: " + respuesta);
+            }
+        }
+        init();
+    </script>
+</body>
+
+</html>

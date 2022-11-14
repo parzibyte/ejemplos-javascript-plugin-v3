@@ -194,6 +194,26 @@ const ConectorPluginV3 = (() => {
             return await response.json();
         }
 
+        static async obtenerImpresorasRemotas(ruta, rutaRemota) {
+            if (ruta) ConectorPlugin.URL_PLUGIN_POR_DEFECTO = ruta;
+            const response = await fetch(ConectorPlugin.URL_PLUGIN_POR_DEFECTO + "/reenviar?host=" + rutaRemota);
+            return await response.json();
+        }
+
+
+        async imprimirEnImpresoraRemota(nombreImpresora, rutaRemota) {
+            const payload = {
+                operaciones: this.operaciones,
+                nombreImpresora,
+                serial: this.serial,
+            };
+            const response = await fetch(this.ruta + "/reenviar?host=" + rutaRemota, {
+                method: "POST",
+                body: JSON.stringify(payload),
+            });
+            return await response.json();
+        }
+
         async imprimirEn(nombreImpresora) {
             const payload = {
                 operaciones: this.operaciones,
