@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./bulma.min.css">
     <script src="./ConectorJavaScript.js" type="text/javascript"></script>
-    <title>Demostrar capacidades del plugin - By Parzibyte</title>
+    <title>Imprimir caracteres personalizados en impresora térmica - By Parzibyte</title>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4859317680104877"
         crossorigin="anonymous"></script>
 </head>
@@ -114,6 +114,7 @@
         </div>
     </nav>
     <div class="container">
+
         <div class="columns">
             <div class="column">
                 <h1 class="is-size-1">Probar carácter personalizado</h1>
@@ -121,8 +122,63 @@
         </div>
         <div class="columns">
             <div class="column">
-                <div class="select is-rounded">
-                    <select id="listaDeImpresoras"></select>
+                <button class="button is-primary m-2" id="btnRellenarBlanco">Rellenar de blanco</button>
+                <button class="button is-primary m-2" id="btnRellenarNegro">Rellenar de negro</button>
+                <canvas style="border: 1px solid black;" id="canvas"></canvas>
+                <br>
+                <div class="field">
+                    <label class="label">Impresora:</label>
+                    <div class="select is-rounded">
+                        <select id="listaDeImpresoras"></select>
+                    </div>
+                </div>
+                <div class="field">
+                    <label for="" class="label">El carácter se definirá usando la siguiente cadena:</label>
+                    <textarea readonly class="textarea" id="textareaCaracterPersonalizado" cols="12"
+                        rows="24"></textarea>
+                </div>
+                <div class="field">
+                    <label for="" class="label">Carácter que va a remplazar:</label>
+                    <div class="control">
+                        <input maxlength="1" class="input" type="text" id="caracterRemplazo">
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label">Multiplicador ancho:</label>
+                    <div class="select is-rounded">
+                        <select id="multiplicadorAncho">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label">Multiplicador alto:</label>
+                    <div class="select is-rounded">
+                        <select id="multiplicadorAlto">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label for="" class="label">Escribe un mensaje que contenga el carácter que vas a remplazar</label>
+                    <div class="control">
+                        <input class="input" type="text" id="mensaje">
+                    </div>
                 </div>
                 <button id="btnImprimir" class="button is-success">Imprimir</button>
             </div>
@@ -148,33 +204,84 @@
         const obtenerListaDeImpresoras = async () => {
             return await ConectorPluginV3.obtenerImpresoras();
         }
-        const caracterPersonalizado = `000001111000
-000010000100
-000100011110
-000100100001
-011100100001
-010100100001
-010100100001
-010100011110
-010100000010
-011100000010
-000100111010
-000100101010
-000111101110
-000000000000
-000000000000
-000000000000
-111010101110
-100010101000
-111010101110
-001010100010
-111011101110
-000000000000
-000000000000
-000000000000`;
+        const BIT_ENCENDIDO = "1",
+            BIT_APAGADO = "0";
+        const arregloDeCaracter = [
+            ["0", "0", "0", "0", "0", "1", "1", "1", "1", "0", "0", "0"],
+            ["0", "0", "0", "0", "1", "0", "0", "0", "0", "1", "0", "0"],
+            ["0", "0", "0", "1", "0", "0", "0", "1", "1", "1", "1", "0"],
+            ["0", "0", "0", "1", "0", "0", "1", "0", "0", "0", "0", "1"],
+            ["0", "1", "1", "1", "0", "0", "1", "0", "0", "0", "0", "1"],
+            ["0", "1", "0", "1", "0", "0", "1", "0", "0", "0", "0", "1"],
+            ["0", "1", "0", "1", "0", "0", "1", "0", "0", "0", "0", "1"],
+            ["0", "1", "0", "1", "0", "0", "0", "1", "1", "1", "1", "0"],
+            ["0", "1", "0", "1", "0", "0", "0", "0", "0", "0", "1", "0"],
+            ["0", "1", "1", "1", "0", "0", "0", "0", "0", "0", "1", "0"],
+            ["0", "0", "0", "1", "0", "0", "1", "1", "1", "0", "1", "0"],
+            ["0", "0", "0", "1", "0", "0", "1", "0", "1", "0", "1", "0"],
+            ["0", "0", "0", "1", "1", "1", "1", "0", "1", "1", "1", "0"],
+            ["0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0"],
+            ["0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0"],
+            ["0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0"],
+            ["1", "1", "1", "0", "1", "0", "1", "0", "1", "1", "1", "0"],
+            ["1", "0", "0", "0", "1", "0", "1", "0", "1", "0", "0", "0"],
+            ["1", "1", "1", "0", "1", "0", "1", "0", "1", "1", "1", "0"],
+            ["0", "0", "1", "0", "1", "0", "1", "0", "0", "0", "1", "0"],
+            ["1", "1", "1", "0", "1", "1", "1", "0", "1", "1", "1", "0"],
+            ["0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0"],
+            ["0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0"],
+            ["0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0"]
+        ];
         const URLPlugin = "http://localhost:8000"
         const $listaDeImpresoras = document.querySelector("#listaDeImpresoras"),
-            $btnImprimir = document.querySelector("#btnImprimir");
+            $btnImprimir = document.querySelector("#btnImprimir"),
+            $btnRellenarBlanco = document.querySelector("#btnRellenarBlanco"),
+            $btnRellenarNegro = document.querySelector("#btnRellenarNegro"),
+            $textareaCaracterPersonalizado = document.querySelector("#textareaCaracterPersonalizado"),
+            $caracterRemplazo = document.querySelector("#caracterRemplazo"),
+            $mensaje = document.querySelector("#mensaje"),
+            $multiplicadorAncho = document.querySelector("#multiplicadorAncho"),
+            $multiplicadorAlto = document.querySelector("#multiplicadorAlto"),
+            $canvas = document.querySelector("#canvas");
+
+        function getCursorPosition(canvas, event) {
+            const rect = canvas.getBoundingClientRect()
+            const x = event.clientX - rect.left
+            const y = event.clientY - rect.top
+            return [x, y];
+        }
+
+        const convertirArregloACadenaParaCaracter = arreglo => {
+            return arreglo.map(fila => fila.join("")).join("\n");
+        }
+
+        const MEDIDA_CUADRO = 30;
+        $canvas.width = arregloDeCaracter[0].length * MEDIDA_CUADRO;
+        $canvas.height = arregloDeCaracter.length * MEDIDA_CUADRO;
+        const dibujar = () => {
+            const contexto = $canvas.getContext("2d");
+            // Tomado de https://parzibyte.me/blog/2020/10/31/dibujar-arreglo-canvas-javascript/
+
+            // Comenzar a dibujar
+            // x e y nos van a ayudar a dibujar usando las medidas de pixeles
+            let y = 0, x = 0;
+            for (const fila of arregloDeCaracter) {
+                x = 0;
+                for (const bit of fila) {
+                    // Indicamos el color que usaremos
+                    if (bit === BIT_ENCENDIDO) {
+                        contexto.fillStyle = "black"
+                    } else {
+                        contexto.fillStyle = "white"
+                    }
+                    // Y creamos el rectángulo en la posición X con Y, usando la misma altura y anchura
+                    contexto.fillRect(x, y, MEDIDA_CUADRO, MEDIDA_CUADRO);
+                    x += MEDIDA_CUADRO;
+                }
+                y += MEDIDA_CUADRO;
+            }
+            $textareaCaracterPersonalizado.textContent = convertirArregloACadenaParaCaracter(arregloDeCaracter);
+        };
         const init = async () => {
             const impresoras = await ConectorPluginV3.obtenerImpresoras(URLPlugin);
             for (const impresora of impresoras) {
@@ -190,17 +297,63 @@
                 }
                 demostrarCaracterPersonalizado(nombreImpresora);
             });
+
+
+            $canvas.addEventListener("click", (evento) => {
+                const [x, y] = getCursorPosition($canvas, evento);
+                const indiceX = Math.floor(x / MEDIDA_CUADRO), indiceY = Math.floor(y / MEDIDA_CUADRO);
+                if (indiceX < 0 || indiceY < 0) {
+                    return;
+                }
+                if (indiceX > arregloDeCaracter[0].length - 1 || indiceY > arregloDeCaracter.length - 1) {
+                    return;
+                }
+                if (arregloDeCaracter[indiceY][indiceX] == BIT_APAGADO) {
+                    arregloDeCaracter[indiceY][indiceX] = BIT_ENCENDIDO;
+                } else {
+                    arregloDeCaracter[indiceY][indiceX] = BIT_APAGADO;
+                }
+                dibujar();
+            });
+
+            $btnRellenarBlanco.addEventListener("click", () => {
+                for (let y = 0; y < arregloDeCaracter.length; y++) {
+                    for (let x = 0; x < arregloDeCaracter[y].length; x++) {
+                        arregloDeCaracter[y][x] = BIT_APAGADO;
+                    }
+                }
+                dibujar();
+            });
+
+            $btnRellenarNegro.addEventListener("click", () => {
+                for (let y = 0; y < arregloDeCaracter.length; y++) {
+                    for (let x = 0; x < arregloDeCaracter[y].length; x++) {
+                        arregloDeCaracter[y][x] = BIT_ENCENDIDO;
+                    }
+                }
+                dibujar();
+            });
         }
         const demostrarCaracterPersonalizado = async (nombreImpresora) => {
             const conector = new ConectorPluginV3(URLPlugin);
+            const caracterReemplazado = $caracterRemplazo.value;
+            const mensaje = $mensaje.value;
+            const caracterDeReemplazo = $textareaCaracterPersonalizado.textContent;
+            if (!caracterReemplazado) {
+                return alert("Especifica el carácter que será remplazado por el carácter definido");
+            }
+            if (!mensaje) {
+                return alert("Escribe un mensaje");
+            }
+            const multiplicadorAlto = parseInt($multiplicadorAlto.value);
+            const multiplicadorAncho = parseInt($multiplicadorAncho.value);
             conector.Iniciar()
-                //.Feed(1)
-                .DefinirCaracterPersonalizado("$", caracterPersonalizado)
+                .EstablecerTamañoFuente(multiplicadorAncho, multiplicadorAlto)
                 .HabilitarCaracteresPersonalizados()
-                .EscribirTexto("$\n")
+                .DefinirCaracterPersonalizado(caracterReemplazado, caracterDeReemplazo)
+                .EscribirTexto(mensaje)
+                .Feed(2);
             const respuesta = await conector
-                //.Corte(1)
-                //.Pulso(48, 60, 120)
                 .imprimirEn(nombreImpresora);
             if (respuesta === true) {
                 alert("Impreso correctamente");
@@ -209,6 +362,7 @@
             }
         }
         init();
+        dibujar();
     </script>
 </body>
 
