@@ -190,12 +190,12 @@
 				if (!nombreImpresora) {
 					return alert("Por favor seleccione una impresora. Si no hay ninguna, asegúrese de haberla compartido como se indica en: https://parzibyte.me/blog/2017/12/11/instalar-impresora-termica-generica/")
 				}
-				imprimirHolaMundo(nombreImpresora);
+				imprimirCodigoDeBarras(nombreImpresora);
 			});
 		}
 
 
-		const imprimirHolaMundo = async (nombreImpresora) => {
+		const imprimirCodigoDeBarras = async (nombreImpresora) => {
 			const contenido = $contenido.value;
 			if (!contenido) {
 				return alert("Escribe el contenido del código de barras");
