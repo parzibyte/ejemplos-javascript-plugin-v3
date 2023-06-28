@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
@@ -38,7 +38,7 @@
                                                     foreach ($modulos as $indiceModulo => $modulo) {
                                                         $tituloParaMenu = $modulo["titulo"];
                                                         $archivoEnlace = $modulo["archivo"];
-                                                        if ($archivoEnlace === "errores") {
+                                                        if ($archivoEnlace === "errores" || $archivoEnlace === "index") {
                                                             continue;
                                                         }
                                                     ?>
