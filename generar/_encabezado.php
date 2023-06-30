@@ -119,3 +119,14 @@
             </div>
         </div>
     </nav>
+    <div class="container">
+        <div class="columns">
+            <div class="column">
+                <div class="notification is-warning">
+                    Recuerda que debes invocar al plugin (servir este sitio) por https, localhost o 127.0.0.1.
+                    No funcionará en lugares sin HTTPS y tampoco en localhost con un puerto distinto al 80 (que es el puerto por defecto) ni en IP.
+                    Si quieres imprimir en red mira el ejemplo de <a href="./red.html">Cómo usar el plugin en red</a>
+                </div>
+            </div>
+        </div>
+    </div>
