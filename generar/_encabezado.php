@@ -126,6 +126,15 @@
                     Recuerda que debes invocar al plugin (servir este sitio) por https, localhost o 127.0.0.1.
                     No funcionará en lugares sin HTTPS y tampoco en localhost con un puerto distinto al 80 (que es el puerto por defecto) ni en IP.
                     Si quieres imprimir en red mira el ejemplo de <a href="./red.html">Cómo usar el plugin en red</a>
+                    <br>
+                    <strong>Si los ejemplos no funcionan asegúrate de:</strong>
+                    <br>
+                    <ol>
+                        <li>El plugin debe estarse ejecutando en segundo plano. Descárgalo de: <a href="https://github.com/parzibyte/plugin-impresora-termica-v3/releases/latest">https://github.com/parzibyte/plugin-impresora-termica-v3/releases/latest</a></li>
+                        <li>
+                            Tu impresora debe estar compartida y tener un nombre amigable como se indica en: <a href="https://parzibyte.me/blog/2017/12/11/instalar-impresora-termica-generica/">https://parzibyte.me/blog/2017/12/11/instalar-impresora-termica-generica/</a>
+                        </li>
+                    </ol>
                 </div>
             </div>
         </div>
