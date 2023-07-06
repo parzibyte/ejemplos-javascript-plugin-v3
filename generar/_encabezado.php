@@ -6,6 +6,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Plugin gratuito ESC POS para impresoras térmicas. Imprime recibos con texto con estilos, códigos QR, imágenes y más">
+    <meta name="keywords" content="impresora térmica, esc pos, pos, impresora, plugin, imagen, código qr, código de barras">
     <link rel="stylesheet" href="./bulma.min.css">
     <script src="./ConectorJavaScript.js" type="text/javascript"></script>
     <title><?php echo $titulo ?> - Plugin ESC POS para impresoras térmicas</title>
@@ -113,6 +115,9 @@
                         </a>
                         <a class="button is-light" href="https://parzibyte.me/blog/2022/11/01/plugin-gratuito-impresoras-termicas-bluetooth-android/">
                             Versión para Android
+                        </a>
+                        <a href="./en/" class="button is-success">
+                            🇺🇸&nbsp;English
                         </a>
                     </div>
                 </div>

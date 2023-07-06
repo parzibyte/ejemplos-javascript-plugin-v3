@@ -1,4 +1,58 @@
 <?php
+$modulosIngles = [
+    [
+        "archivo" => "accented-text",
+        "titulo" => "Print diacritic text (spanish text)",
+    ],
+    [
+        "archivo" => "barcode",
+        "titulo" => "Print barcodes",
+    ],
+    [
+        "archivo" => "cash_drawer",
+        "titulo" => "Open cash drawer",
+    ],
+    [
+        "archivo" => "capabilities",
+        "titulo" => "ESC POS plugin capabilities",
+    ],
+    [
+        "archivo" => "custom_character",
+        "titulo" => "Define custom character",
+    ],
+    [
+        "archivo" => "errors",
+        "titulo" => "Error handling",
+    ],
+    [
+        "archivo" => "hello_world",
+        "titulo" => "Hello thermal printer",
+    ],
+    [
+        "archivo" => "images",
+        "titulo" => "Print URL, local or base64 images",
+    ],
+    [
+        "archivo" => "index",
+        "titulo" => "ESC POS free plugin",
+    ],
+    [
+        "archivo" => "license",
+        "titulo" => "License use",
+    ],
+    [
+        "archivo" => "qr",
+        "titulo" => "Create and print QR codes",
+    ],
+    [
+        "archivo" => "lan",
+        "titulo" => "Print on LAN by using plugin as a proxy",
+    ],
+    [
+        "archivo" => "tabulated",
+        "titulo" => "Print tabulated data",
+    ],
+];
 $modulos = [
     [
         "archivo" => "acentos",
@@ -62,6 +116,19 @@ foreach ($modulos as $indiceModulo => $modulo) {
     include "_encabezado.php";
     include $archivo . ".php";
     include "_pie.php";
+    $salida = ob_get_clean();
+    file_put_contents($directorioSalida . "$archivo.html", $salida);
+}
+
+ob_clean();
+$directorioSalida = "../en/";
+foreach ($modulosIngles as $indiceModulo => $modulo) {
+    ob_start();
+    $titulo = $modulo["titulo"];
+    $archivo = $modulo["archivo"];
+    include "./en/_encabezado.php";
+    include "./en/" . $archivo . ".php";
+    include "./en/_pie.php";
     $salida = ob_get_clean();
     file_put_contents($directorioSalida . "$archivo.html", $salida);
 }
