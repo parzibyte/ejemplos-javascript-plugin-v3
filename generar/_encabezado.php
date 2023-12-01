@@ -110,6 +110,9 @@
             <div class="navbar-end">
                 <div class="navbar-item">
                     <div class="buttons">
+                        <a href="https://parzibyte.me/apps/ticket-designer/#/first-steps" class="button is-danger">
+                            <strong>Prueba el diseñador</strong>
+                        </a>
                         <a href="https://parzibyte.me/blog/2022/10/02/contratar-licencia-para-plugin-impresora-termica-v3/" class="button is-primary">
                             <strong>Contratar una licencia</strong>
                         </a>
