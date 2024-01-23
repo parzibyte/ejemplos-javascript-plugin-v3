@@ -29,7 +29,7 @@
                     Docs
                 </a>
 
-                <a target="_blank" class="navbar-item" href="https://github.com/parzibyte/plugin-impresora-termica-v3/releases/latest">
+                <a target="_blank" class="navbar-item" href="https://github.com/parzibyte/plugin-impresora-termica-v3/releases/tag/3.2.1">
                     Download
                 </a>
 
@@ -91,7 +91,7 @@
                         <a target="_blank" href="https://parzibyte.me/blog/en/2019/10/13/how-to-share-printer-windows/" class="navbar-item">
                             Setup printer
                         </a>
-                        <a target="_blank" href="https://github.com/parzibyte/plugin-impresora-termica-v3/releases/latest" class="navbar-item">
+                        <a target="_blank" href="https://github.com/parzibyte/plugin-impresora-termica-v3/releases/tag/3.2.1" class="navbar-item">
                             Download plugin
                         </a>
                         <a target="_blank" href="errors.html" class="navbar-item">
@@ -140,7 +140,7 @@
                     <strong>If the examples are not working, make sure that:</strong>
                     <br>
                     <ol>
-                        <li>The plugin is running in the background. Download it from: <a href="https://github.com/parzibyte/plugin-impresora-termica-v3/releases/latest">https://github.com/parzibyte/plugin-impresora-termica-v3/releases/latest</a></li>
+                        <li>The plugin is running in the background. Download it from: <a href="https://github.com/parzibyte/plugin-impresora-termica-v3/releases/tag/3.2.1">https://github.com/parzibyte/plugin-impresora-termica-v3/releases/tag/3.2.1</a></li>
                         <li>
                             Your printer is shared and has a friendly name as indicated in:
                             <a href="https://parzibyte.me/blog/en/2019/10/13/how-to-share-printer-windows/">https://parzibyte.me/blog/en/2019/10/13/how-to-share-printer-windows/</a>

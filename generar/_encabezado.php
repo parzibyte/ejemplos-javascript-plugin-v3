@@ -29,7 +29,7 @@
                     Documentación y presentación
                 </a>
 
-                <a target="_blank" class="navbar-item" href="https://github.com/parzibyte/plugin-impresora-termica-v3/releases/latest">
+                <a target="_blank" class="navbar-item" href="https://github.com/parzibyte/plugin-impresora-termica-v3/releases/tag/3.2.1">
                     Descargar plugin
                 </a>
 
@@ -91,7 +91,7 @@
                         <a target="_blank" href="https://parzibyte.me/blog/2017/12/11/instalar-impresora-termica-generica/" class="navbar-item">
                             Configurar impresora
                         </a>
-                        <a target="_blank" href="https://github.com/parzibyte/plugin-impresora-termica-v3/releases/latest" class="navbar-item">
+                        <a target="_blank" href="https://github.com/parzibyte/plugin-impresora-termica-v3/releases/tag/3.2.1" class="navbar-item">
                             Descargar plugin
                         </a>
                         <a target="_blank" href="errores.html" class="navbar-item">
@@ -138,7 +138,7 @@
                     <strong>Si los ejemplos no funcionan asegúrate de:</strong>
                     <br>
                     <ol>
-                        <li>El plugin debe estarse ejecutando en segundo plano. Descárgalo de: <a href="https://github.com/parzibyte/plugin-impresora-termica-v3/releases/latest">https://github.com/parzibyte/plugin-impresora-termica-v3/releases/latest</a></li>
+                        <li>El plugin debe estarse ejecutando en segundo plano. Descárgalo de: <a href="https://github.com/parzibyte/plugin-impresora-termica-v3/releases/tag/3.2.1">https://github.com/parzibyte/plugin-impresora-termica-v3/releases/tag/3.2.1</a></li>
                         <li>
                             Tu impresora debe estar compartida y tener un nombre amigable como se indica en: <a href="https://parzibyte.me/blog/2017/12/11/instalar-impresora-termica-generica/">https://parzibyte.me/blog/2017/12/11/instalar-impresora-termica-generica/</a>
                         </li>

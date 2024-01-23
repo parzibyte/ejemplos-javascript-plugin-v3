@@ -15,15 +15,6 @@
             menu.classList.toggle("is-active");
             boton.classList.toggle("is-active");
         };
-        const url = "https://estadisticasusoprogramas.parzibyte.repl.co/contador/registrar_visita.php";
-        const payload = {
-            pagina: document.title,
-            url: window.location.href,
-        };
-        fetch(url, {
-            method: "POST",
-            body: JSON.stringify(payload),
-        });
     });
 </script>
 </body>
