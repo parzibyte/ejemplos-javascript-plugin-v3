@@ -52,6 +52,10 @@ $modulosIngles = [
         "archivo" => "tabulated",
         "titulo" => "Print tabulated data",
     ],
+    [
+        "archivo" => "html",
+        "titulo" => "Print from HTML",
+    ],
 ];
 $modulos = [
     [
@@ -105,6 +109,11 @@ $modulos = [
     [
         "archivo" => "tabla",
         "titulo" => "Datos tabulados",
+    ],
+
+    [
+        "archivo" => "html",
+        "titulo" => "Imprimir a partir de HTML",
     ],
 ];
 ob_clean();

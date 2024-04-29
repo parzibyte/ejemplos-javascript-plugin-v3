@@ -11,6 +11,14 @@
     <link rel="stylesheet" href="./bulma.min.css">
     <script src="./ConectorJavaScript.js" type="text/javascript"></script>
     <title><?php echo $titulo ?> - Plugin ESC POS para impresoras térmicas</title>
+    <?php if (strcmp($archivo, "html") === 0) { ?>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" crossorigin="anonymous"></script>
+        <link href="./summernote/summernote-bs4.min.css" rel="stylesheet">
+        <script src="./summernote/summernote-bs4.min.js"></script>
+    <?php } ?>
 </head>
 
 <body>
