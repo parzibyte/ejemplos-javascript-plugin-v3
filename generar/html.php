@@ -81,6 +81,14 @@
             <label for="serial" class="form-label">Serial (opcional)</label>
             <input value="" type="text" id="serial" class="form-control" placeholder="Serial">
         </div>
+        <div class="col-auto">
+            <label for="metodoImpresionImagen" class="form-label">Image printing method</label>
+            <select class="custom-select" id="metodoImpresionImagen">
+                <option value="0">Rasterización</option>
+                <option value="1">Columnas</option>
+                <option value="2">NV Graphics</option>
+            </select>
+        </div>
     </div>
     <br>
     <button id="imprimir" class="btn btn-success">Imprimir</button>
@@ -93,7 +101,8 @@
                 $contenido = document.querySelector("#contenido"),
                 $ancho = document.querySelector("#ancho"),
                 $maximoAncho = document.querySelector("#maximoAncho"),
-                $serial = document.querySelector("#serial");
+                $serial = document.querySelector("#serial"),
+                $algoritmo = document.querySelector("#metodoImpresionImagen");
 
             const $imprimir = document.querySelector("#imprimir");
             const imprimir = async () => {
@@ -135,7 +144,7 @@ ${htmlDelEditor}
 </html>`;
                 const ancho = parseInt($ancho.value),
                     maximoAncho = parseInt($maximoAncho.value),
-                    algoritmo = 1;
+                    algoritmo = parseInt($algoritmo.value);
 
                 const respuestaHttp = await fetch("http://localhost:8000/imprimir", {
                     method: "POST",
