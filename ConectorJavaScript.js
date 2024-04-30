@@ -19,11 +19,6 @@ const ConectorPluginV3 = (() => {
 
         static URL_PLUGIN_POR_DEFECTO = "http://localhost:8000";
         static Operacion = Operacion;
-        static TAMAÑO_IMAGEN_NORMAL = 0;
-        static TAMAÑO_IMAGEN_DOBLE_ANCHO = 1;
-        static TAMAÑO_IMAGEN_DOBLE_ALTO = 2;
-        static TAMAÑO_IMAGEN_DOBLE_ANCHO_Y_ALTO = 3;
-        static TAMAÑO_IMAGEN_DOBLE_ANCHO_Y_ALTO = 3;
         static ALINEACION_IZQUIERDA = 0;
         static ALINEACION_CENTRO = 1;
         static ALINEACION_DERECHA = 2;
@@ -31,6 +26,9 @@ const ConectorPluginV3 = (() => {
         static RECUPERACION_QR_MEDIA = 1;
         static RECUPERACION_QR_ALTA = 2;
         static RECUPERACION_QR_MEJOR = 3;
+        static ALGORITMO_IMAGEN_RASTERIZACION = 0;
+        static ALGORITMO_IMAGEN_COLUMNAS = 1;
+        static ALGORITMO_IMAGEN_NV_GRAPHICS = 2;
 
 
         constructor(ruta, serial) {
@@ -42,7 +40,7 @@ const ConectorPluginV3 = (() => {
             return this;
         }
 
-        CargarImagenLocalEImprimir(ruta, tamaño, maximoAncho) {
+        CargarImagenLocalEImprimir(ruta, maximoAncho, algoritmo) {
             this.operaciones.push(new ConectorPlugin.Operacion("CargarImagenLocalEImprimir", Array.from(arguments)));
             return this;
         }
@@ -58,7 +56,7 @@ const ConectorPluginV3 = (() => {
             this.operaciones.push(new ConectorPlugin.Operacion("DefinirCaracterPersonalizado", Array.from(arguments)));
             return this;
         }
-        DescargarImagenDeInternetEImprimir(urlImagen, tamaño, maximoAncho) {
+        DescargarImagenDeInternetEImprimir(urlImagen, maximoAncho, algoritmo) {
             this.operaciones.push(new ConectorPlugin.Operacion("DescargarImagenDeInternetEImprimir", Array.from(arguments)));
             return this;
         }
@@ -119,27 +117,27 @@ const ConectorPluginV3 = (() => {
             this.operaciones.push(new ConectorPlugin.Operacion("HabilitarElModoDeCaracteresChinos", Array.from(arguments)));
             return this;
         }
-        ImprimirCodigoDeBarrasCodabar(contenido, alto, ancho, tamañoImagen) {
+        ImprimirCodigoDeBarrasCodabar(contenido, alto, ancho, algoritmo) {
 
             this.operaciones.push(new ConectorPlugin.Operacion("ImprimirCodigoDeBarrasCodabar", Array.from(arguments)));
             return this;
         }
 
-        ImprimirCodigoDeBarrasCode128(contenido, alto, ancho, tamañoImagen) {
+        ImprimirCodigoDeBarrasCode128(contenido, alto, ancho, algoritmo) {
             this.operaciones.push(new ConectorPlugin.Operacion("ImprimirCodigoDeBarrasCode128", Array.from(arguments)));
             return this;
         }
-        ImprimirCodigoDeBarrasCode39(contenido, incluirSumaDeVerificacion, modoAsciiCompleto, alto, ancho, tamañoImagen) {
+        ImprimirCodigoDeBarrasCode39(contenido, incluirSumaDeVerificacion, modoAsciiCompleto, alto, ancho, algoritmo) {
             this.operaciones.push(new ConectorPlugin.Operacion("ImprimirCodigoDeBarrasCode39", Array.from(arguments)));
             return this;
         }
 
-        ImprimirCodigoDeBarrasCode93(contenido, alto, ancho, tamañoImagen) {
+        ImprimirCodigoDeBarrasCode93(contenido, alto, ancho, algoritmo) {
             this.operaciones.push(new ConectorPlugin.Operacion("ImprimirCodigoDeBarrasCode93", Array.from(arguments)));
             return this;
         }
 
-        ImprimirCodigoDeBarrasEan(contenido, alto, ancho, tamañoImagen) {
+        ImprimirCodigoDeBarrasEan(contenido, alto, ancho, algoritmo) {
             this.operaciones.push(new ConectorPlugin.Operacion("ImprimirCodigoDeBarrasEan", Array.from(arguments)));
             return this;
         }
@@ -151,23 +149,23 @@ const ConectorPluginV3 = (() => {
             this.operaciones.push(new ConectorPlugin.Operacion("ImprimirCodigoDeBarrasPdf417", Array.from(arguments)));
             return this;
         }
-        ImprimirCodigoDeBarrasTwoOfFiveITF(contenido, intercalado, alto, ancho, tamañoImagen) {
+        ImprimirCodigoDeBarrasTwoOfFiveITF(contenido, intercalado, alto, ancho, algoritmo) {
             this.operaciones.push(new ConectorPlugin.Operacion("ImprimirCodigoDeBarrasTwoOfFiveITF", Array.from(arguments)));
             return this;
         }
-        ImprimirCodigoDeBarrasUpcA(contenido, alto, ancho, tamañoImagen) {
+        ImprimirCodigoDeBarrasUpcA(contenido, alto, ancho, algoritmo) {
             this.operaciones.push(new ConectorPlugin.Operacion("ImprimirCodigoDeBarrasUpcA", Array.from(arguments)));
             return this;
         }
-        ImprimirCodigoDeBarrasUpcE(contenido, alto, ancho, tamañoImagen) {
+        ImprimirCodigoDeBarrasUpcE(contenido, alto, ancho, algoritmo) {
             this.operaciones.push(new ConectorPlugin.Operacion("ImprimirCodigoDeBarrasUpcE", Array.from(arguments)));
             return this;
         }
-        ImprimirCodigoQr(contenido, anchoMaximo, nivelRecuperacion, tamañoImagen) {
+        ImprimirCodigoQr(contenido, anchoMaximo, nivelRecuperacion, algoritmo) {
             this.operaciones.push(new ConectorPlugin.Operacion("ImprimirCodigoQr", Array.from(arguments)));
             return this;
         }
-        ImprimirImagenEnBase64(imagenCodificadaEnBase64, tamaño, maximoAncho) {
+        ImprimirImagenEnBase64(imagenCodificadaEnBase64, maximoAncho, algoritmo) {
             this.operaciones.push(new ConectorPlugin.Operacion("ImprimirImagenEnBase64", Array.from(arguments)));
             return this;
         }

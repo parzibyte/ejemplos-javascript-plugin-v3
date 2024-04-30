@@ -1,7 +1,7 @@
 <div class="columns has-text-centered">
     <div class="column">
         <p>
-            Proudly brought to you by <a href="https://parzibyte.me/blog">Parzibyte</a>.
+            Orgullosamente programado por <a href="https://parzibyte.me/blog">Parzibyte</a>.
             <strong>Este sitio es open source, puedes</strong>
             <a href="https://github.com/parzibyte/ejemplos-javascript-plugin-v3/">ver el código fuente en GitHub</a>
         </p>

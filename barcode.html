@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
-<!--Generado el 2024-04-29 22:41:00-->
+<!--Generado el 2024-04-30 09:48:00-->
 
 <head>
     <meta charset="UTF-8">
@@ -178,8 +178,17 @@
 				<div class="field">
 					<label class="label">Escribe el contenido del código de barras EAN:</label>
 					<div class="control">
-						<input id="contenido" value="5901234123457" class="input" type="text"
-							placeholder="Aquí va el código de barras">
+						<input id="contenido" value="5901234123457" class="input" type="text" placeholder="Aquí va el código de barras">
+					</div>
+				</div>
+				<div class="field">
+					<label class="label">Algoritmo</label>
+					<div class="select is-rounded">
+						<select id="algoritmo">
+							<option value="0">Rasterización</option>
+							<option value="1">Columnas</option>
+							<option value="2">NV Graphics</option>
+						</select>
 					</div>
 				</div>
 				<button id="btnImprimir" class="button is-success mt-2">Imprimir</button>
@@ -190,20 +199,19 @@
 						Al imprimir, el resultado debería ser parecido al siguiente:
 					</p>
 				</div>
-				<img src="./img/Código de barras EAN 13 con impresora térmica.jpg"
-					alt="Código de barras EAN 13 en una impresora térmica">
+				<img src="./img/Código de barras EAN 13 con impresora térmica.jpg" alt="Código de barras EAN 13 en una impresora térmica">
 			</div>
 		</div>
 	</div>
 	<script>
-
 		const obtenerListaDeImpresoras = async () => {
 			return await ConectorPluginV3.obtenerImpresoras();
 		}
 		const URLPlugin = "http://localhost:8000"
 		const $listaDeImpresoras = document.querySelector("#listaDeImpresoras"),
 			$btnImprimir = document.querySelector("#btnImprimir"),
-			$contenido = document.querySelector("#contenido");
+			$contenido = document.querySelector("#contenido"),
+			$algoritmo = document.querySelector("#algoritmo");
 
 		const init = async () => {
 			const impresoras = await ConectorPluginV3.obtenerImpresoras(URLPlugin);
@@ -229,10 +237,13 @@
 				return alert("Escribe el contenido del código de barras");
 			}
 			const conector = new ConectorPluginV3(URLPlugin);
+			const algoritmo = parseInt($algoritmo.value);
+			const alto = 80;
+			const ancho = 184;
 			conector.Iniciar();
 			conector.EstablecerAlineacion(ConectorPluginV3.ALINEACION_CENTRO);
 			// En la PT-210 me permite imprimir uno de 80 de alto por 400 de ancho
-			conector.ImprimirCodigoDeBarrasEan(contenido, 80, 184, ConectorPluginV3.TAMAÑO_IMAGEN_NORMAL);
+			conector.ImprimirCodigoDeBarrasEan(contenido, alto, ancho, algoritmo);
 			conector.Iniciar(); // En mi impresora PT-210 debo invocar a "Iniciar" cada vez que imprimo una imagen
 			conector.EstablecerAlineacion(ConectorPluginV3.ALINEACION_CENTRO);
 			conector.Feed(1);
@@ -250,7 +261,7 @@
 	</script><div class="columns has-text-centered">
     <div class="column">
         <p>
-            Proudly brought to you by <a href="https://parzibyte.me/blog">Parzibyte</a>.
+            Orgullosamente programado por <a href="https://parzibyte.me/blog">Parzibyte</a>.
             <strong>Este sitio es open source, puedes</strong>
             <a href="https://github.com/parzibyte/ejemplos-javascript-plugin-v3/">ver el código fuente en GitHub</a>
         </p>

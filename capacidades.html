@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
-<!--Generado el 2024-04-29 22:41:00-->
+<!--Generado el 2024-04-30 09:48:00-->
 
 <head>
     <meta charset="UTF-8">
@@ -246,7 +246,7 @@
                 .Iniciar()
                 .DeshabilitarElModoDeCaracteresChinos()
                 .EstablecerAlineacion(ConectorPluginV3.ALINEACION_CENTRO)
-                .DescargarImagenDeInternetEImprimir("http://assets.stickpng.com/thumbs/587e32259686194a55adab73.png", 0, 216)
+                .DescargarImagenDeInternetEImprimir("https://parzibyte.github.io/ejemplos-javascript-plugin-v3/generar/parzibyte.png", 200, ConectorPluginV3.ALGORITMO_IMAGEN_RASTERIZACION)
                 .Feed(1)
                 .EscribirTexto("Parzibyte's blog\n")
                 .EscribirTexto("Blog de un programador\n")
@@ -270,9 +270,9 @@
                 .EstablecerTamañoFuente(1, 1)
                 .TextoSegunPaginaDeCodigos(2, "cp850", "¡Gracias por su compra!\n")
                 .Feed(1)
-                .ImprimirCodigoQr("https://parzibyte.me/blog", 160, ConectorPluginV3.RECUPERACION_QR_MEJOR, ConectorPluginV3.TAMAÑO_IMAGEN_NORMAL)
+                .ImprimirCodigoQr("https://parzibyte.me/blog", 160, ConectorPluginV3.RECUPERACION_QR_MEJOR, ConectorPluginV3.ALGORITMO_IMAGEN_RASTERIZACION)
                 .Feed(1)
-                .ImprimirCodigoDeBarrasCode128("parzibyte.me", 80, 192, ConectorPluginV3.TAMAÑO_IMAGEN_NORMAL)
+                .ImprimirCodigoDeBarrasCode128("parzibyte.me", 80, 192, ConectorPluginV3.ALGORITMO_IMAGEN_RASTERIZACION)
                 .Feed(1)
                 .EstablecerTamañoFuente(1, 1)
                 .EscribirTexto("parzibyte.me\n")
@@ -290,7 +290,7 @@
     </script><div class="columns has-text-centered">
     <div class="column">
         <p>
-            Proudly brought to you by <a href="https://parzibyte.me/blog">Parzibyte</a>.
+            Orgullosamente programado por <a href="https://parzibyte.me/blog">Parzibyte</a>.
             <strong>Este sitio es open source, puedes</strong>
             <a href="https://github.com/parzibyte/ejemplos-javascript-plugin-v3/">ver el código fuente en GitHub</a>
         </p>

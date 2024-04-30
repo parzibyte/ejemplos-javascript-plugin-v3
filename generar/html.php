@@ -82,7 +82,7 @@
             <input value="" type="text" id="serial" class="form-control" placeholder="Serial">
         </div>
         <div class="col-auto">
-            <label for="metodoImpresionImagen" class="form-label">Image printing method</label>
+            <label for="metodoImpresionImagen" class="form-label">Algoritmo para impresión de imagen</label>
             <select class="custom-select" id="metodoImpresionImagen">
                 <option value="0">Rasterización</option>
                 <option value="1">Columnas</option>

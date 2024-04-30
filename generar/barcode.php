@@ -29,8 +29,17 @@
 				<div class="field">
 					<label class="label">Escribe el contenido del código de barras EAN:</label>
 					<div class="control">
-						<input id="contenido" value="5901234123457" class="input" type="text"
-							placeholder="Aquí va el código de barras">
+						<input id="contenido" value="5901234123457" class="input" type="text" placeholder="Aquí va el código de barras">
+					</div>
+				</div>
+				<div class="field">
+					<label class="label">Algoritmo</label>
+					<div class="select is-rounded">
+						<select id="algoritmo">
+							<option value="0">Rasterización</option>
+							<option value="1">Columnas</option>
+							<option value="2">NV Graphics</option>
+						</select>
 					</div>
 				</div>
 				<button id="btnImprimir" class="button is-success mt-2">Imprimir</button>
@@ -41,20 +50,19 @@
 						Al imprimir, el resultado debería ser parecido al siguiente:
 					</p>
 				</div>
-				<img src="./img/Código de barras EAN 13 con impresora térmica.jpg"
-					alt="Código de barras EAN 13 en una impresora térmica">
+				<img src="./img/Código de barras EAN 13 con impresora térmica.jpg" alt="Código de barras EAN 13 en una impresora térmica">
 			</div>
 		</div>
 	</div>
 	<script>
-
 		const obtenerListaDeImpresoras = async () => {
 			return await ConectorPluginV3.obtenerImpresoras();
 		}
 		const URLPlugin = "http://localhost:8000"
 		const $listaDeImpresoras = document.querySelector("#listaDeImpresoras"),
 			$btnImprimir = document.querySelector("#btnImprimir"),
-			$contenido = document.querySelector("#contenido");
+			$contenido = document.querySelector("#contenido"),
+			$algoritmo = document.querySelector("#algoritmo");
 
 		const init = async () => {
 			const impresoras = await ConectorPluginV3.obtenerImpresoras(URLPlugin);
@@ -80,10 +88,13 @@
 				return alert("Escribe el contenido del código de barras");
 			}
 			const conector = new ConectorPluginV3(URLPlugin);
+			const algoritmo = parseInt($algoritmo.value);
+			const alto = 80;
+			const ancho = 184;
 			conector.Iniciar();
 			conector.EstablecerAlineacion(ConectorPluginV3.ALINEACION_CENTRO);
 			// En la PT-210 me permite imprimir uno de 80 de alto por 400 de ancho
-			conector.ImprimirCodigoDeBarrasEan(contenido, 80, 184, ConectorPluginV3.TAMAÑO_IMAGEN_NORMAL);
+			conector.ImprimirCodigoDeBarrasEan(contenido, alto, ancho, algoritmo);
 			conector.Iniciar(); // En mi impresora PT-210 debo invocar a "Iniciar" cada vez que imprimo una imagen
 			conector.EstablecerAlineacion(ConectorPluginV3.ALINEACION_CENTRO);
 			conector.Feed(1);
