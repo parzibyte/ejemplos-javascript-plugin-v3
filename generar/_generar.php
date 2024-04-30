@@ -56,6 +56,10 @@ $modulosIngles = [
         "archivo" => "html",
         "titulo" => "Print from HTML",
     ],
+    [
+        "archivo" => "webpage",
+        "titulo" => "Print webpage based on HTML",
+    ],
 ];
 $modulos = [
     [
@@ -110,10 +114,13 @@ $modulos = [
         "archivo" => "tabla",
         "titulo" => "Datos tabulados",
     ],
-
     [
         "archivo" => "html",
         "titulo" => "Imprimir a partir de HTML",
+    ],
+    [
+        "archivo" => "pagina_web",
+        "titulo" => "Imprimir a partir de HTML de página web",
     ],
 ];
 ob_clean();

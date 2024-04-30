@@ -187,6 +187,16 @@ const ConectorPluginV3 = (() => {
             return this;
         }
 
+        GenerarImagenAPartirDeHtmlEImprimir(html, anchoPagina, maximoAncho, algoritmo) {
+            this.operaciones.push(new ConectorPlugin.Operacion("GenerarImagenAPartirDeHtmlEImprimir", Array.from(arguments)));
+            return this;
+        }
+
+        GenerarImagenAPartirDePaginaWebEImprimir(urlPagina, anchoPagina, maximoAncho, algoritmo) {
+            this.operaciones.push(new ConectorPlugin.Operacion("GenerarImagenAPartirDePaginaWebEImprimir", Array.from(arguments)));
+            return this;
+        }
+
 
         static async obtenerImpresoras(ruta) {
             if (ruta) ConectorPlugin.URL_PLUGIN_POR_DEFECTO = ruta;
