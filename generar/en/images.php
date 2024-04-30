@@ -13,7 +13,7 @@
             <div class="field">
                 <label class="label">Image URL (can be a localhost one)</label>
                 <div class="control">
-                    <input id="url" value="https://www.smashbros.com/images/og/pac-man.jpg" class="input" type="text" placeholder="https://laimagen">
+                    <input id="url" value="https://parzibyte.github.io/ejemplos-javascript-plugin-v3/generar/parzibyte.png" class="input" type="text" placeholder="https://laimagen">
                 </div>
             </div>
             <div class="field">
@@ -59,7 +59,8 @@
         $url = document.querySelector("#url"),
         $base64 = document.querySelector("#base64"),
         $local = document.querySelector("#local"),
-        $btnImprimir = document.querySelector("#btnImprimir");
+        $btnImprimir = document.querySelector("#btnImprimir"),
+        $algoritmo = document.querySelector("#algoritmo");
 
     const init = async () => {
         const impresoras = await ConectorPluginV3.obtenerImpresoras(URLPlugin);
@@ -72,7 +73,7 @@
         $btnImprimir.addEventListener("click", () => {
             const nombreImpresora = $listaDeImpresoras.value;
             if (!nombreImpresora) {
-                return alert("Please select a printer. If there's none, make sure you have shared as indicated in: https://parzibyte.me/blog/en/2019/10/13/how-to-share-printer-windows/")
+                return alert("Por favor seleccione una impresora. Si no hay ninguna, asegúrese de haberla compartido como se indica en: https://parzibyte.me/blog/2017/12/11/instalar-impresora-termica-generica/")
             }
             imprimirImagenes(nombreImpresora);
         });
@@ -85,17 +86,18 @@
         const url = $url.value;
         const base64 = $base64.value;
         const local = $local.value;
+        const algoritmo = parseInt($algoritmo.value);
         if (url) {
             conector.EscribirTexto("Imagen de URL: " + url);
             conector.Feed(1);
-            conector.DescargarImagenDeInternetEImprimir(url, ConectorPluginV3.TAMAÑO_IMAGEN_NORMAL, 160)
+            conector.DescargarImagenDeInternetEImprimir(url, 160, algoritmo)
             conector.Iniciar(); //Nota: esto solo es necesario en ocasiones, por ejemplo en mi impresora debo hacerlo siempre que acabo de imprimir una imagen
             conector.Feed(1);
         }
         if (base64) {
             conector.EscribirTexto("Imagen en base64: ");
             conector.Feed(1);
-            conector.ImprimirImagenEnBase64(base64, ConectorPluginV3.TAMAÑO_IMAGEN_NORMAL, 160);
+            conector.ImprimirImagenEnBase64(base64, 160, algoritmo);
             conector.Iniciar(); //Nota: esto solo es necesario en ocasiones, por ejemplo en mi impresora debo hacerlo siempre que acabo de imprimir una imagen
             conector.Feed(1);
         }
@@ -103,14 +105,14 @@
         if (local) {
             conector.EscribirTexto(`Imagen local: ` + local);
             conector.Feed(1);
-            conector.CargarImagenLocalEImprimir(local, ConectorPluginV3.TAMAÑO_IMAGEN_NORMAL, 160);
+            conector.CargarImagenLocalEImprimir(local, 160, algoritmo);
             conector.Iniciar(); //Nota: esto solo es necesario en ocasiones, por ejemplo en mi impresora debo hacerlo siempre que acabo de imprimir una imagen
             conector.Feed(1);
         }
         const respuesta = await conector
             .imprimirEn(nombreImpresora);
         if (respuesta === true) {
-            alert("Printed successfully");
+            alert("Impreso correctamente");
         } else {
             alert("Error: " + respuesta);
         }
