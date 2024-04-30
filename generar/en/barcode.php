@@ -6,7 +6,7 @@
 		</div>
 		<div class="columns">
 			<div class="notification is-info">
-				In this example an EAN_13 code is printed by using 
+				In this example an EAN_13 code is printed by using
 				<code> ImprimirCodigoDeBarrasEan</code>, and the plugin also supports:
 				Codabar,
 				Code 128,
@@ -29,10 +29,19 @@
 				<div class="field">
 					<label class="label">Write the EAN barcode content</label>
 					<div class="control">
-						<input id="contenido" value="5901234123457" class="input" type="text"
-							placeholder="Here goes the barcode">
+						<input id="contenido" value="5901234123457" class="input" type="text" placeholder="Here goes the barcode">
 					</div>
 				</div>
+				<div class="field">
+                <label class="label">Image printing algorithm</label>
+                <div class="select is-rounded">
+                    <select id="algoritmo">
+                        <option value="0">Raster bit image</option>
+                        <option value="1">Bit image column format</option>
+                        <option value="2">NV Graphics</option>
+                    </select>
+                </div>
+            </div>
 				<button id="btnImprimir" class="button is-success mt-2">Print</button>
 			</div>
 			<div class="column">
@@ -41,20 +50,19 @@
 						When printing, the result receipt should be as follows:
 					</p>
 				</div>
-				<img src="./img/Código de barras EAN 13 con impresora térmica.jpg"
-					alt="Código de barras EAN 13 en una impresora térmica">
+				<img src="./img/Código de barras EAN 13 con impresora térmica.jpg" alt="Código de barras EAN 13 en una impresora térmica">
 			</div>
 		</div>
 	</div>
 	<script>
-
 		const obtenerListaDeImpresoras = async () => {
 			return await ConectorPluginV3.obtenerImpresoras();
 		}
 		const URLPlugin = "http://localhost:8000"
 		const $listaDeImpresoras = document.querySelector("#listaDeImpresoras"),
 			$btnImprimir = document.querySelector("#btnImprimir"),
-			$contenido = document.querySelector("#contenido");
+			$contenido = document.querySelector("#contenido"),
+			$algoritmo = document.querySelector("#algoritmo");
 
 		const init = async () => {
 			const impresoras = await ConectorPluginV3.obtenerImpresoras(URLPlugin);
@@ -67,7 +75,7 @@
 			$btnImprimir.addEventListener("click", () => {
 				const nombreImpresora = $listaDeImpresoras.value;
 				if (!nombreImpresora) {
-					return alert("Please select a printer. If there's none, make sure you have shared as indicated in: https://parzibyte.me/blog/en/2019/10/13/how-to-share-printer-windows/")
+					return alert("Por favor seleccione una impresora. Si no hay ninguna, asegúrese de haberla compartido como se indica en: https://parzibyte.me/blog/2017/12/11/instalar-impresora-termica-generica/")
 				}
 				imprimirCodigoDeBarras(nombreImpresora);
 			});
@@ -77,14 +85,17 @@
 		const imprimirCodigoDeBarras = async (nombreImpresora) => {
 			const contenido = $contenido.value;
 			if (!contenido) {
-				return alert("Write the barcode content");
+				return alert("Escribe el contenido del código de barras");
 			}
 			const conector = new ConectorPluginV3(URLPlugin);
+			const algoritmo = parseInt($algoritmo.value);
+			const alto = 80;
+			const ancho = 184;
 			conector.Iniciar();
 			conector.EstablecerAlineacion(ConectorPluginV3.ALINEACION_CENTRO);
-			// On my PT-210 I am able to print a 80x400 barcode
-			conector.ImprimirCodigoDeBarrasEan(contenido, 80, 184, ConectorPluginV3.TAMAÑO_IMAGEN_NORMAL);
-			conector.Iniciar(); // On my PT-210 I must call Iniciar after I print an image
+			// En la PT-210 me permite imprimir uno de 80 de alto por 400 de ancho
+			conector.ImprimirCodigoDeBarrasEan(contenido, alto, ancho, algoritmo);
+			conector.Iniciar(); // En mi impresora PT-210 debo invocar a "Iniciar" cada vez que imprimo una imagen
 			conector.EstablecerAlineacion(ConectorPluginV3.ALINEACION_CENTRO);
 			conector.Feed(1);
 			conector.EscribirTexto(contenido);
