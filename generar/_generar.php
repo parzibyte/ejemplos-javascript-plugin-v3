@@ -1,4 +1,5 @@
 <?php
+$urlParaDescargarPlugin = "https://github.com/parzibyte/plugin-impresora-termica-v3/releases/latest/";
 $modulosIngles = [
     [
         "archivo" => "accented-text",
