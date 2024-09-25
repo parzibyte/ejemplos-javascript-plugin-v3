@@ -33,7 +33,7 @@
 
         <div id="navbarBasicExample" class="navbar-menu">
             <div class="navbar-start">
-                <a class="navbar-item" target="_blank" href="https://parzibyte.me/blog/2022/09/30/plugin-impresoras-termicas-version-3/">
+                <a class="navbar-item" target="_blank" href="https://parzibyte.me/http-esc-pos-desktop-docs/">
                     Docs
                 </a>
 

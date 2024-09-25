@@ -1,5 +1,5 @@
 <?php
-$urlParaDescargarPlugin = "https://github.com/parzibyte/plugin-impresora-termica-v3/releases/latest/";
+$urlParaDescargarPlugin = "https://parzibyte.me/http-esc-pos-desktop-docs/es/guia/descargar.html";
 $modulosIngles = [
     [
         "archivo" => "accented-text",

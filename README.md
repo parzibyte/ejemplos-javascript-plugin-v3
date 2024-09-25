@@ -8,6 +8,7 @@ usar el nuevo sitio para la documentación centralizada donde
 encontrarás ejemplos, área de pruebas y documentación completa:
 
 Español: https://parzibyte.me/http-esc-pos-desktop-docs/es/
+
 Inglés: https://parzibyte.me/http-esc-pos-desktop-docs/
 
 # Imprimir en impresora térmica desde JavaScript
