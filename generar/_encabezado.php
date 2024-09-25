@@ -138,6 +138,16 @@
     <div class="container">
         <div class="columns">
             <div class="column">
+                <div class="notification is-danger">
+                    <strong>Estos ejemplos son obsoletos y los mantengo aquí solo por compatibilidad. </strong>
+                    La API fresca y totalmente documentada está en <a href="https://parzibyte.me/http-esc-pos-desktop-docs/es/">https://parzibyte.me/http-esc-pos-desktop-docs/es/</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="columns">
+            <div class="column">
                 <div class="notification is-warning">
                     Recuerda que debes invocar al plugin (servir este sitio) por https, localhost o 127.0.0.1.
                     No funcionará en lugares sin HTTPS y tampoco en localhost con un puerto distinto al 80 (que es el puerto por defecto) ni en IP.

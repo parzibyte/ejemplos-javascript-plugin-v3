@@ -139,6 +139,16 @@
     <div class="container">
         <div class="columns">
             <div class="column">
+                <div class="notification is-danger">
+                    <strong>These examples are deprecated. I have kept them for compatibility purposes. </strong>
+                    The new and totally documented API is located at <a href="https://parzibyte.me/http-esc-pos-desktop-docs/">https://parzibyte.me/http-esc-pos-desktop-docs/</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="columns">
+            <div class="column">
                 <div class="notification is-warning">
                     Remember that, when printing from the browser, you must use
                     https, localhost o 127.0.0.1.
